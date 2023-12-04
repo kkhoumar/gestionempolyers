@@ -30,9 +30,11 @@ class ConnexionController extends Controller
      */
     public function store(connexionrequest $request)
     {
-        $connexion = User::all();
-        if(Auth::attempt(['connexion'])){
-            return route('dashboard.dashboard');
+        $connexion = $request->only(['email','password']);
+        if(Auth::attempt( $connexion)){
+            return redirect()->route('dashboard.dashboard')->with('massage','vous etes connectes');
+        }else{
+            return redirect()->back()->with('message','le mot passe ou le email est incorrect');
         }
 
     }
