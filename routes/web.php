@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\departementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 route::get('/',[ConnexionController::class,'index'])->name('connexion');
 route::post('/store',[ConnexionController::class,'store']);
+
+//creation des routes dashboard
+ //route::middleware('auth')->prefix('admin')->group(function(){
+
+ //});
+
+route::get('/dashboard',[dashboardController::class,'index']);
+
+//depatement
+
+route::get('/create',[departementController::class,'create'])->name('create.departement');
+route::post('/store',[departementController::class,'store'])->name('store.departement');
